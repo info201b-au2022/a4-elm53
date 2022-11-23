@@ -1,6 +1,6 @@
 ---
 title: "Your A4 Report Title (TODO: Revise title)"
-author: "Your Name"
+author: "Elizabeth McCrady"
 date: '2022-11-01'
 output: html_document
 ---
@@ -34,12 +34,77 @@ print(sum)
 ```
 
 ## Introduction 
-[TODO]
+Recall that your goal is to expose patterns of inequality using the incarceration data. Use this section to introduce your report. Specifically, you should briefly introduce and discuss the following: 
+
+The social issues related to this data set (draw upon Data Feminism, along with your reading at the Vera InstituteLinks to an external site. and and elsewhere, appropriate). 
+The direct and indirect stakeholders that are impacted by research into this dataset. In this vein, what are the central values that you need to engage.
+The questions that you answer in your report.
+
+Requirements: 
+[ ] Complete: One or more paragraphs (more than 150 words) that introduces this assignment
 
 ## Data Summary 
-[TODO]
+Write a paragraph of summary information, citing at least three values calculated from the data.  Your goal is to summarize some of the key variables that you are interested in. Report the values and explain why they are important; that is, how do the variables and value help you to understand patterns of inequality in the prison system.
 
-[TODO ... other sections ... See Canvas for details]
+This values will likely be calculated using your DPLYR skills. You might answer such questions as: 
 
-_All the very best with your work!_
+What is the average value of my variable across all the counties (in a given year)? 
+Where is my variable the highest or lowest?  
+How much has my variable change over the last N years?
+Requirements 
+[ ] Complete: At least three values are included 
+[ ] Complete: Values clarify chosen variables related to patterns of inequality 
+
+## Growth of US Prison Population
+Chart. Present the chart.
+Chart caption. Include a caption that describes the chart.
+Summary paragraph. A brief paragraph (50 words or more) that summarizes the key patterns that appear to be revealed in the chart.
+Requirements 
+[ ] Complete: Chart: Data wrangling function: A function for data wrangling 
+[ ] Complete: Chart: A plotting function: A function for creating the chart
+[ ] Complete: Chart: The plotting function calls the data wrangling function
+[ ] Complete: Chart: (1) Labels, scales, and legends are clear (visually and labeling choices); and (2) A chart caption 
+[ ] Complete: A concise, clear question (in summary paragraph)
+[ ] Complete: Summary paragraph
+
+## Growth of Prison Population by State
+Chart. Present the chart.
+Chart caption. Include a caption that names and briefly describes the chart.
+Summary paragraph. Include a brief paragraph (50 words or more) that summarizes the key patterns that appear to be revealed in the chart. Explain the reason for the states that you show.
+Requirements 
+[ ] Complete: Chart: Data wrangling function: A function for data wrangling 
+[ ] Complete: Chart: A plotting function: A function for creating the chart
+[ ] Complete: Chart: The plotting function calls the data wrangling function
+[ ] Complete: Chart: (1) Labels, scales, and legends are clear (visually and labeling choices); and (2) A chart caption 
+[ ] Complete: A concise, clear question (in summary paragraph)
+[ ] Complete: Summary paragraph
+
+## Section 5: <variable comparison that reveals potential patterns of inequality>
+Chart. Present the chart.
+Chart caption. Include a caption that names and briefly describes the chart.
+Summary paragraph. Include the following: 
+A specific question(s).
+A succinct answer to the question, referring to evidence in the chart.
+A brief paragraph (50 words or more) that summarizes the key patterns that appear to be revealed in the chart.
+
+Requirements 
+[ ] Complete: Chart: Data wrangling function: A function for data wrangling 
+[ ] Complete: Chart: A plotting function: A function for creating the chart
+[ ] Complete: Chart: The plotting function calls the data wrangling function
+[ ] Complete: Chart: (1) Labels, scales, and legends are clear (visually and labeling choices); and (2) A chart caption 
+[ ] Complete: A concise and clear section heading (<variable comparison that reveals potential patterns of inequality>) 
+[ ] Complete: A concise, clear question (in summary paragraph)
+[ ] Complete: Summary paragraph
+
+## Section 6: <a map shows potential patterns of inequality that vary geographically>
+
+Requirements 
+[ ] Complete: Map: Data wrangling function: A function for data wrangling 
+[ ] Complete: Map: A plotting function: A function for creating the chart
+[ ] Complete: Map: The plotting function calls the data wrangling function
+[ ] Complete: Chart: (1) Labels, scales, and legends are clear (visually and labeling choices); and (2) A chart caption 
+[ ] Complete: A concise and clear section heading (<a map shows potential patterns of inequality that vary geographically>) 
+[ ] Complete: A concise, clear question (in summary paragraph)
+[ ] Complete: Summary paragraph
+
 
