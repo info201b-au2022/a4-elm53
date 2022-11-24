@@ -19,7 +19,7 @@ test_query2 <- function(num = 6) {
   return(v)
 }
 
-incarceration <- read.csv("incarceration_trends.csv")
+incarceration <- read.csv("../incarceration_trends.csv")
 ## Section 2  ----
 # What is the average value of my variable across all the counties (in a given year)?
 avg_totalpop_2013 <- incarceration %>%
