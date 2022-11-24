@@ -1,110 +1,59 @@
 ---
-title: "Your A4 Report Title (TODO: Revise title)"
+title: "Incarceration and the inequalities of Gender Population in the United States"
 author: "Elizabeth McCrady"
 date: '2022-11-01'
 output: html_document
 ---
 
-```{r echo=FALSE, eval=TRUE, message=FALSE}
-source("../source/a4-helpers.R")
+```{r setup, include=FALSE}
 source("../source/analysis.R")
 ```
 
 ## Abstract 
-[TODO: Include a short abstract (about 50 words)]
-
-# Test (TODO: Remove before submission!!)
-```{r echo=FALSE}
-q1_string <- test_query1()
-num <- 5
-```
-As you know, this is a markdown report. The [R Markdown Cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf) is **useful!**
-
-* Here's a test of a dynamic variable. Say **"`r q1_string`!!!** 
-* Here's another test. A vector
-of numbers: `r test_query2(num)`.
-
-Recall that _{r echo=TRUE}_ can be used to display the code, 
-which is very useful when developing and debugging a report. Here's an example: 
-
-```{r echo=TRUE}
-num <- 5
-sum <- sum(test_query2(num))
-print(sum)
-```
+In this file we are looking at jail populations in the United States from an incarceration data set. We note the growth of US jail population over time, growth of jail population by state over time, Female and Male jail populations per state over time, and finally a map that shows a different view of female and male jail populations in the US by a US map. 
 
 ## Introduction 
-Recall that your goal is to expose patterns of inequality using the incarceration data. Use this section to introduce your report. Specifically, you should briefly introduce and discuss the following: 
 
-The social issues related to this data set (draw upon Data Feminism, along with your reading at the Vera InstituteLinks to an external site. and and elsewhere, appropriate). 
-The direct and indirect stakeholders that are impacted by research into this dataset. In this vein, what are the central values that you need to engage.
-The questions that you answer in your report.
-
-Requirements: 
-[ ] Complete: One or more paragraphs (more than 150 words) that introduces this assignment
+For this assignment I was asked to look at patterns of inequality using incarceration data I was given. Incarceration is a touchy subject and there is a lot of inequality in this topic. For example, one race may be more prominent in incarceration data than another and the same for gender. Research into this affects everyone. The direct stakeholders are those who are in the prison and jail system that contribute to this data. Indirect stakeholders would be those who look at this data, notices the inequality, and wants to call for a change in how incarceration in. In this report I am looking at the average total population of incarceration in 2013 to get a sense of what one year looks like and the location of the min and max population for that year. I also looked at the growth of the US jail population over 1970 to 2020, the growth of jail population by state, and then I looked at gender inequalities for section 5 and 6. 
 
 ## Data Summary 
-Write a paragraph of summary information, citing at least three values calculated from the data.  Your goal is to summarize some of the key variables that you are interested in. Report the values and explain why they are important; that is, how do the variables and value help you to understand patterns of inequality in the prison system.
+When looking at this data I wanted to look at the total population in jails and prisons. First I looked at the average total population for just the year 2013 which was **`r avg_totalpop_2013`** people. Another one that I looked at was the maximum of the total population in 2013 and what county it was in. The maximum total population in 2013 was in **`r max_totalpop_2013`**. I also looked at the minimum which was found in **`r min_totalpop_2013`**. These values are important because it shows which Counties have high prison and jail populations and those Counties that don't. **`r max_totalpop_2013`** consists of a city where a lot more people get arrested than in **`r min_totalpop_2013`**, Nebraska.
 
-This values will likely be calculated using your DPLYR skills. You might answer such questions as: 
+## Growth of US Jail Population
+```{r plot_jail_pop_for_us, echo=F}
+plot_jail_pop_for_us()
+```
+This chart shows the increase of Jail population in the United States from 1970 to 2020. 
 
-What is the average value of my variable across all the counties (in a given year)? 
-Where is my variable the highest or lowest?  
-How much has my variable change over the last N years?
-Requirements 
-[ ] Complete: At least three values are included 
-[ ] Complete: Values clarify chosen variables related to patterns of inequality 
+Looking at this chart you may wonder why is it so important to look at this data? Well, you can see that there was a steady increase in the jail population from 1980 to about 2008 when it began to decline slightly. Currently we don't see a increase or a decrease in the jail population in 2020. This can either mean for the population to go up or down since we don't have a foreseeable trend to base an idea off of. 
 
-## Growth of US Prison Population
-Chart. Present the chart.
-Chart caption. Include a caption that describes the chart.
-Summary paragraph. A brief paragraph (50 words or more) that summarizes the key patterns that appear to be revealed in the chart.
-Requirements 
-[ ] Complete: Chart: Data wrangling function: A function for data wrangling 
-[ ] Complete: Chart: A plotting function: A function for creating the chart
-[ ] Complete: Chart: The plotting function calls the data wrangling function
-[ ] Complete: Chart: (1) Labels, scales, and legends are clear (visually and labeling choices); and (2) A chart caption 
-[ ] Complete: A concise, clear question (in summary paragraph)
-[ ] Complete: Summary paragraph
-
-## Growth of Prison Population by State
-Chart. Present the chart.
-Chart caption. Include a caption that names and briefly describes the chart.
-Summary paragraph. Include a brief paragraph (50 words or more) that summarizes the key patterns that appear to be revealed in the chart. Explain the reason for the states that you show.
-Requirements 
-[ ] Complete: Chart: Data wrangling function: A function for data wrangling 
-[ ] Complete: Chart: A plotting function: A function for creating the chart
-[ ] Complete: Chart: The plotting function calls the data wrangling function
-[ ] Complete: Chart: (1) Labels, scales, and legends are clear (visually and labeling choices); and (2) A chart caption 
-[ ] Complete: A concise, clear question (in summary paragraph)
-[ ] Complete: Summary paragraph
+## Growth of Jail Population by State
+``` {r plot_jail_pop_by_states, echo=F}
+plot_jail_pop_by_states(c("CA","FL","GA","TX"))
+```
+California, Florida, Georgia, and Texas are the four highest states with the highest Jail population of all the states by 2018. This is also very inline with with population of the states being the highest in the nation. All the states had an increase of Jail populations up until around 2008 when they began to decline or level out. 
 
 ## Section 5: <variable comparison that reveals potential patterns of inequality>
-Chart. Present the chart.
-Chart caption. Include a caption that names and briefly describes the chart.
-Summary paragraph. Include the following: 
-A specific question(s).
-A succinct answer to the question, referring to evidence in the chart.
-A brief paragraph (50 words or more) that summarizes the key patterns that appear to be revealed in the chart.
+``` {r plot_female_jail_pop, echo=F}
+plot_female_jail_pop(c("CA","FL","GA","TX"))
+```
 
-Requirements 
-[ ] Complete: Chart: Data wrangling function: A function for data wrangling 
-[ ] Complete: Chart: A plotting function: A function for creating the chart
-[ ] Complete: Chart: The plotting function calls the data wrangling function
-[ ] Complete: Chart: (1) Labels, scales, and legends are clear (visually and labeling choices); and (2) A chart caption 
-[ ] Complete: A concise and clear section heading (<variable comparison that reveals potential patterns of inequality>) 
-[ ] Complete: A concise, clear question (in summary paragraph)
-[ ] Complete: Summary paragraph
+``` {r plot_male_jail_pop, echo=F}
+plot_male_jail_pop(c("CA","FL","GA","TX"))
+```
+Above we have two charts, a female jail population and a male jail population chart for our 4 states we looked at previously over 1970 to 2020. The male chart has a significant higher scale than the female chart yet most of the states follow the same trends. This can mean that males are being incarcerated more females based off of gender. However, the Texas and Florida trends change for female and males. There is alot more of an overlap for consistency of population between Texas in Florida in the Female data than there is in the male data. 
 
-## Section 6: <a map shows potential patterns of inequality that vary geographically>
+## Section 6:
 
-Requirements 
-[ ] Complete: Map: Data wrangling function: A function for data wrangling 
-[ ] Complete: Map: A plotting function: A function for creating the chart
-[ ] Complete: Map: The plotting function calls the data wrangling function
-[ ] Complete: Chart: (1) Labels, scales, and legends are clear (visually and labeling choices); and (2) A chart caption 
-[ ] Complete: A concise and clear section heading (<a map shows potential patterns of inequality that vary geographically>) 
-[ ] Complete: A concise, clear question (in summary paragraph)
-[ ] Complete: Summary paragraph
+### Female Jail Population in the United States
 
+```{r female_usmap, echo=F}
+female_usmap
+```
 
+### Male Jail Population in the United States
+
+```{r male_usmap, echo=F}
+male_usmap
+```
+Once again we are looking at the male and female populations in jails in the United states in 2018. This map shows us which states have the highest jail population and those with lower jail populations in the year 2018. Some states have no data for this chart which could cause some inconsistencies with analysis. On the female map we can see that there is a higher density of females in the jail population of Tennessee than that of males. There is also alot more similar jail populations for females around Tennessee compared to males. The male chart mostly shows the most populated states and then shows lower jail populations for all the other states. 
