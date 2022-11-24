@@ -172,7 +172,7 @@ female_jail_pop_2018 <- incarceration %>%
   summarise(female_jail_pop=sum(female_jail_pop), .groups = 'drop') %>%
   filter(year == 2018)
   
-plot_usmap(regions = "states", data = female_jail_pop_2018, values = "female_jail_pop", color="red") +
+female_usmap <- plot_usmap(regions = "states", data = female_jail_pop_2018, values = "female_jail_pop", color="red") +
   scale_fill_continuous(low = "white", high = "red",name="Jail Population", label = scales::comma)
 
 male_jail_pop_2018 <- incarceration %>%
@@ -183,7 +183,7 @@ male_jail_pop_2018 <- incarceration %>%
   summarise(male_jail_pop=sum(male_jail_pop), .groups = 'drop') %>%
   filter(year == 2018)
 
-plot_usmap(regions = "states", data = male_jail_pop_2018, values = "male_jail_pop", color="red") +
+male_usmap <- plot_usmap(regions = "states", data = male_jail_pop_2018, values = "male_jail_pop", color="red") +
   scale_fill_continuous(low = "white", high = "red",name="Jail Population", label = scales::comma)
 
 
