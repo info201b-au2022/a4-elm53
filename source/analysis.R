@@ -91,7 +91,7 @@ plot_jail_pop_for_us <- function() {
 ## Section 4  ----
 # Growth of Prison Population by State
 # produce a line chart that shows the growth of the U.S. prison population from 1970 to 2018 by one or more states.
-states <- read.csv("source/state_names_and_codes.csv")
+states <- read.csv("../source/state_names_and_codes.csv")
 states <- states %>%
   select(Code) %>%
   pull(Code)
