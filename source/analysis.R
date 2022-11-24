@@ -1,4 +1,5 @@
 library(tidyverse)
+library(usmap)
 
 # The functions might be useful for A4
 source("source/a4-helpers.R")
@@ -26,7 +27,11 @@ avg_totalpop_2013 <- incarceration %>%
   select(total_pop, year) %>%
   filter(year == 2013) %>%
   mutate(avg_totalpop_2013, avg = mean(total_pop)) %>%
-  return(avg)
+  select(avg)
+avg_totalpop_2013 <- unique.data.frame(avg_totalpop_2013)
+avg_totalpop_2013 <- avg_totalpop_2013 %>%
+  pull(avg)
+
 
 # Where is my variable the highest or lowest?
 max_totalpop_2013 <- incarceration %>%
@@ -34,14 +39,14 @@ max_totalpop_2013 <- incarceration %>%
   select(total_pop, year, county_name) %>%
   filter(year == 2013) %>%
   filter(total_pop == max(total_pop)) %>%
-  return(county_name)
+  pull(county_name)
 
 min_totalpop_2013 <- incarceration %>%
   drop_na() %>%
   select(total_pop, year, county_name) %>%
   filter(year == 2013) %>%
   filter(total_pop == min(total_pop)) %>%
-  return(county_name)
+  pull(county_name)
 
 
 # How much has my variable change over the last N years?
@@ -51,7 +56,10 @@ change_totalpop_2013 <- incarceration %>%
   filter(year == 2000 | year == 2013) %>%
   filter(county_name == "King County") %>%
   mutate(change_totalpop_2013, difference = diff(total_pop)) %>%
-  return(difference)
+  select(difference)
+change_totalpop_2013 <- unique.data.frame(change_totalpop_2013)
+change_totalpop_2013 <- change_totalpop_2013 %>%
+  pull(difference)
 
 #----------------------------------------------------------------------------#
 
@@ -109,19 +117,64 @@ plot_jail_pop_by_states <- function(states) {
   return(jail_pop_by_states)
 }
 
-
-## Section 5  ----
 #----------------------------------------------------------------------------#
-# <variable comparison that reveals potential patterns of inequality>
-# Your functions might go here ... <todo:  update comment>
-# See Canvas
+## Section 5  ----
+get_states_gender_jail_pop <- function(states) {
+  gender_jail_pop <- incarceration %>%
+    select(year, female_jail_pop,male_jail_pop,state) %>%
+    filter(state %in% states) %>%
+    group_by(year,state) %>%
+    drop_na() %>%
+    summarise(female_pop = sum(female_jail_pop), male_pop = sum(male_jail_pop), .groups = 'drop')
+  gender_jail_pop <- gender_jail_pop %>%
+    mutate(gender_jail_pop, total_male_female = male_pop + female_pop)
+return(gender_jail_pop)
+}
+
+plot_female_jail_pop <- function(states) {
+  female_plot <- get_states_gender_jail_pop(states) %>%
+    ggplot(aes(x=year, y=female_pop, color=state)) +
+    geom_line()+
+    ggtitle("Female Populations in Jails per States") +
+    ylab("Jail Population") +
+    xlab("Year")
+  return(female_plot)
+}
+
+plot_male_jail_pop <- function(states) {
+  male_plot <- get_states_gender_jail_pop(states) %>%
+    ggplot(aes(x=year, y=male_pop, color=state)) +
+    geom_line()+
+    ggtitle("Male Populations in Jails per States") +
+    ylab("Jail Population") +
+    xlab("Year")
+  return(male_plot)
+}
+  
+
 #----------------------------------------------------------------------------#
 
 ## Section 6  ----
-#----------------------------------------------------------------------------#
-# <a map shows potential patterns of inequality that vary geographically>
-# Your functions might go here ... <todo:  update comment>
-# See Canvas
-#----------------------------------------------------------------------------#
+female_jail_pop_2018 <- incarceration %>%
+  select(year, female_jail_pop,state) %>%
+  filter(state %in% states) %>%
+  group_by(year, state) %>%
+  drop_na() %>%
+  summarise(female_jail_pop=sum(female_jail_pop), .groups = 'drop') %>%
+  filter(year == 2018)
+  
+plot_usmap(regions = "states", data = female_jail_pop_2018, values = "female_jail_pop", color="red") +
+  scale_fill_continuous(low = "white", high = "red",name="Jail Population", label = scales::comma)
 
-## Load data frame ----
+male_jail_pop_2018 <- incarceration %>%
+  select(year, male_jail_pop,state) %>%
+  filter(state %in% states) %>%
+  group_by(year, state) %>%
+  drop_na() %>%
+  summarise(male_jail_pop=sum(male_jail_pop), .groups = 'drop') %>%
+  filter(year == 2018)
+
+plot_usmap(regions = "states", data = male_jail_pop_2018, values = "male_jail_pop", color="red") +
+  scale_fill_continuous(low = "white", high = "red",name="Jail Population", label = scales::comma)
+
+
