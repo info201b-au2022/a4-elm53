@@ -120,7 +120,7 @@ plot_jail_pop_by_states <- function(states) {
   jail_pop_by_states <- get_jail_pop_by_states(states) %>%
     ggplot(aes(x = year, y = pop, group = state, color = state)) +
     geom_line() +
-    ggtitle("Jail Population by States") +
+    ggtitle(label = "Jail Population by States", subtitle = "Jail population in California, Florida, Georgia, and Texas over the years 1970 to 2020") +
     ylab("Total Jail Population") +
     xlab("Year")
   return(jail_pop_by_states)
