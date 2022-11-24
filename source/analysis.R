@@ -34,6 +34,7 @@ avg_totalpop_2013 <- avg_totalpop_2013 %>%
 avg_totalpop_2013 <- unique.data.frame(avg_totalpop_2013)
 
 avg_totalpop_2013 <- avg_totalpop_2013 %>%
+  mutate(avg_totalpop_2013, avg = round(avg, digits = 0)) %>%
   pull(avg)
 
 
