@@ -2,7 +2,7 @@ library(tidyverse)
 library(usmap)
 
 # The functions might be useful for A4
-source("source/a4-helpers.R")
+source("../source/a4-helpers.R")
 
 ## Test queries ----
 #----------------------------------------------------------------------------#
