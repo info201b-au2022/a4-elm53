@@ -25,10 +25,14 @@ incarceration <- read.csv("../incarceration_trends.csv")
 avg_totalpop_2013 <- incarceration %>%
   drop_na() %>%
   select(total_pop, year) %>%
-  filter(year == 2013) %>%
+  filter(year == 2013)
+
+avg_totalpop_2013 <- avg_totalpop_2013 %>%
   mutate(avg_totalpop_2013, avg = mean(total_pop)) %>%
   select(avg)
+
 avg_totalpop_2013 <- unique.data.frame(avg_totalpop_2013)
+
 avg_totalpop_2013 <- avg_totalpop_2013 %>%
   pull(avg)
 
@@ -54,10 +58,14 @@ change_totalpop_2013 <- incarceration %>%
   drop_na() %>%
   select(total_pop, year, county_name) %>%
   filter(year == 2000 | year == 2013) %>%
-  filter(county_name == "King County") %>%
+  filter(county_name == "King County")
+
+change_totalpop_2013 <- change_totalpop_2013 %>%
   mutate(change_totalpop_2013, difference = diff(total_pop)) %>%
   select(difference)
+
 change_totalpop_2013 <- unique.data.frame(change_totalpop_2013)
+
 change_totalpop_2013 <- change_totalpop_2013 %>%
   pull(difference)
 
